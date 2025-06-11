@@ -1,0 +1,299 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Dễ Thương</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Quicksand', sans-serif;
+            background: linear-gradient(135deg, rgba(255, 209, 220, 0.9), rgba(224, 247, 250, 0.9)),
+                        url('https://images.unsplash.com/photo-1516574187841-cb9cc2ca948b?auto=format&fit=crop&w=1920&q=80');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            position: relative;
+        }
+
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg width="100" height="100" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg"><circle cx="50" cy="50" r="40" fill="none" stroke="white" stroke-width="0.5" stroke-opacity="0.2"/></svg>') repeat;
+            pointer-events: none;
+            animation: float 20s linear infinite;
+        }
+
+        .container {
+            max-width: 800px;
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 20px;
+            padding: 30px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.15);
+            backdrop-filter: blur(4px);
+            text-align: center;
+            position: relative;
+            z-index: 1;
+            border: 2px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .container::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4, #a1c4fd, #c2e9fb);
+            border-radius: 22px;
+            z-index: -1;
+            animation: borderRotate 6s linear infinite;
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%;
+            height: 0;
+            overflow: hidden;
+            margin: 20px 0;
+            border-radius: 15px;
+        }
+
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border-radius: 15px;
+        }
+
+        .audio-container {
+            background: rgba(255, 255, 255, 0.9);
+            padding: 20px;
+            border-radius: 15px;
+            margin: 20px 0;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        .btn-custom {
+            background: linear-gradient(45deg, #ff9a9e, #fad0c4);
+            border: none;
+            color: white;
+            padding: 12px 30px;
+            border-radius: 25px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn-custom::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+
+        .btn-custom:hover::before {
+            left: 100%;
+        }
+
+        .btn-custom:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.2);
+        }
+
+        .music-note {
+            position: absolute;
+            font-size: 1.5em;
+            animation: float 3s ease-in-out infinite;
+            opacity: 0.6;
+        }
+
+        .music-note:nth-child(1) { top: 10%; left: 10%; animation-delay: 0s; }
+        .music-note:nth-child(2) { top: 20%; right: 15%; animation-delay: 0.5s; }
+        .music-note:nth-child(3) { bottom: 15%; left: 20%; animation-delay: 1s; }
+        .music-note:nth-child(4) { bottom: 25%; right: 10%; animation-delay: 1.5s; }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(10deg); }
+        }
+
+        .btn-facebook {
+            background: #1877f2;
+            color: white;
+            text-decoration: none;
+            padding: 12px 30px;
+            border-radius: 25px;
+            display: inline-block;
+            margin-top: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .btn-facebook:hover {
+            background: #166fe5;
+            color: white;
+            transform: translateY(-3px);
+        }
+
+        .hidden {
+            display: none;
+        }
+
+        .fade-in {
+            animation: fadeIn 0.5s ease-in;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .result {
+            font-size: 1.2em;
+            margin: 20px 0;
+            padding: 15px;
+            border-radius: 15px;
+        }
+
+        .success {
+            background-color: #d4edda;
+            color: #155724;
+        }
+
+        .error {
+            background-color: #f8d7da;
+            color: #721c24;
+        }
+
+        input[type="text"] {
+            padding: 12px 20px;
+            border: 2px solid #ffd1dc;
+            border-radius: 25px;
+            width: 80%;
+            max-width: 400px;
+            margin: 10px 0;
+            font-family: 'Quicksand', sans-serif;
+        }
+
+        input[type="text"]:focus {
+            outline: none;
+            border-color: #ff9a9e;
+            box-shadow: 0 0 10px rgba(255, 154, 158, 0.3);
+        }
+          .allura-regular {
+    font-family: "Allura", cursive;
+    font-weight: 400;
+    font-style: normal;
+  }
+     #resultSection p {
+    font-size: 33px; /* làm chữ bự hơn */
+    color: hotpink;  /* màu hồng */
+    font-weight: bold;
+  }
+    </style>
+</head>
+<body>
+   <div class="allura-regular">
+  <div class="container">
+      <div class="music-note">🎵</div>
+      <div class="music-note">🎼</div>
+      <div class="music-note">🎶</div>
+      <div class="music-note">🎸</div>
+      <h1 class="mb-4">🎵 Bài Hát Bí Mật 🎵</h1>
+      
+      <div class="audio-container">
+          <audio controls autoplay>
+              <source src="./anh-nang-cua-anh.mp3" type="audio/mpeg">
+              <source src="anh-nang-cua-anh.mp3" type="audio/mpeg">
+              Trình duyệt của bạn không hỗ trợ phát audio.
+          </audio>
+      </div>
+
+      <button class="btn btn-custom" id="continueBtn">Tiếp tục</button>
+
+      <div id="quizSection" class="hidden fade-in">
+          <h3 class="mt-4">Đoán bài đó tên gì?</h3>
+          <input type="text" id="answerInput" placeholder="Nhập tên bài hát...">
+          <button class="btn btn-custom" id="submitBtn">Trả lời</button>
+      </div>
+
+      <div id="resultSection" class="hidden fade-in">
+          <div id="resultMessage" class="result"></div>
+          <p class="mt-4">Cho anh cơ hội làm quen với em nhé 😳</p>
+          <a href="https://www.facebook.com/VuHoang0205" class="btn-facebook" target="_blank">
+              <i class="fab fa-facebook"></i> Kết bạn Facebook
+          </a>
+      </div>
+</div>
+
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://kit.fontawesome.com/your-font-awesome-kit.js"></script>
+    <script>
+        document.getElementById('continueBtn').addEventListener('click', function() {
+            document.getElementById('quizSection').classList.remove('hidden');
+            this.classList.add('hidden');
+        });
+
+        document.getElementById('submitBtn').addEventListener('click', function() {
+            const answer = document.getElementById('answerInput').value.toLowerCase().trim();
+            // Chuẩn hóa câu trả lời: bỏ dấu, bỏ khoảng trắng
+            const normalizedAnswer = answer.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '') // Bỏ dấu
+                .replace(/\s+/g, ''); // Bỏ khoảng trắng
+
+            const correctAnswers = [
+                'anh nang cua anh',
+                'ánh nắng của anh',
+                'anhnangcuaanh',
+                'Ánh Nắng Của Anh',
+                'ANH NANG CUA ANH'
+            ].map(ans => ans.normalize('NFD')
+                .replace(/[\u0300-\u036f]/g, '')
+                .replace(/\s+/g, '')
+                .toLowerCase());
+
+            const resultSection = document.getElementById('resultSection');
+            const resultMessage = document.getElementById('resultMessage');
+
+            resultSection.classList.remove('hidden');
+            
+            if (correctAnswers.includes(normalizedAnswer)) {
+                resultMessage.textContent = '10 điểm, giỏi quá!';
+                resultMessage.className = 'result success';
+            } else {
+                resultMessage.textContent = 'Lêu lêu sai rồi!';
+                resultMessage.className = 'result error';
+            }
+        });
+    </script>
+</body>
+</html> 
